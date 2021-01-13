@@ -1,0 +1,20 @@
+.hidden{
+    display: none;
+}
+
+
+.button{
+    width: 100px;
+    padding: 10px 15px;
+    background-color: paleturquoise;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16);
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+.answer--select{
+    background: green;
+}
