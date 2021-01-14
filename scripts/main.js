@@ -5,15 +5,10 @@ const userName = document.getElementById("name-user")
 const buttonStart = document.getElementById("button-start")
 
 var puntaje = 0
-
 var indexQuestion;
-
 var defectTime = 5
-
-
 var chronometer;
-
-var selectedAnswer;
+var selectedAnswer = undefined;
 
 buttonStart.addEventListener("click",startTrivia)
 
@@ -26,16 +21,22 @@ function startTrivia(){
 }
 
 
-
-//dinamico por que no se cuantas categorias quiero
-
-
 function insertCategorys(){
 
     const categorys = [{name:"peliculas",
                 description:"lorem papus maximus uwu no se que escribir aca pero yolo",
                 imgUrl:".",
                 preguntas:[
+                            {
+                                pregunta:"quien soy yo?",
+                                respuestas:["un chamuco","un señorito","un pirilon"],
+                                respuesta:0
+                            },
+                            {
+                                pregunta:"Si buenas hay pan?",
+                                respuestas:["no sr wtf","un señorito","un pirilon"],
+                                respuesta:0
+                            },
                             {
                                 pregunta:"quien soy yo?",
                                 respuestas:["un chamuco","un señorito","un pirilon"],
@@ -89,6 +90,8 @@ function insertCategorys(){
                 
             ]
 
+    //insertando html de categorys 
+
     //generar la categoria en html
     categorys.forEach(
         (category)=>{
@@ -114,9 +117,6 @@ function insertCategorys(){
 
             //agrego el componente por el metodo agregarHijo ("permite no re-escribir esa parte del dom y perder referencias(eventos)")
             mainCategorys.appendChild(componentCategory)
-
-
-
     })
 
     
@@ -128,12 +128,15 @@ function insertCategorys(){
 
 function insertCategory(category){
 
+    //reiniciar el puntaje
+    puntaje = 0
+    //indice de pregunta
+    indexQuestion = 0
+
     //esconder categorias
     mainCategorys.classList.add("hidden")
     mainDinamic.classList.remove("hidden")
 
-    //indice de pregunta
-    indexQuestion = 0
 
     //creo el componente categoria 
     const categoryComponent = createElement("div","",{id:"category",class:"category"})
@@ -149,68 +152,53 @@ function insertCategory(category){
             categoryComponent.appendChild(categoryTitle)    
             categoryComponent.appendChild(categoryQuestionContainer)
 
-            
-    //creo la primer pregunta
-
-    nextQuestion(categoryComponent,categoryQuestionContainer,categoryCounter,categoryTimer,category.preguntas)
-
-    //componente boton siguente
-    const nextQuestionComponent = createElement("div","next!",{class:"button"})
-    categoryComponent.appendChild(nextQuestionComponent)
-       
-    nextQuestionComponent.addEventListener("click",()=> {
-        nextQuestion(categoryComponent,categoryQuestionContainer,categoryCounter,categoryTimer,category.preguntas)
-    })
     
     //añade la categoria al mainDinamic
     mainDinamic.appendChild(categoryComponent)
 
+    //componente boton
+    const nextQuestionButton = createElement("div","next!",{id:"categoryNextQuestion",class:"button hidden"})
+    categoryComponent.appendChild(nextQuestionButton)
+       
+    nextQuestionButton.addEventListener("click",()=> {
+        nextQuestion(category.preguntas)
+    })
+
+    //creo la primer pregunta
+    nextQuestion(category.preguntas)
+
+
 }
 
 
+//ingreso de pregunta
+function nextQuestion(listQuestions,availableTime=defectTime){
 
-//esto solo ocurre la primera vez que o con la presion del boton next
-function nextQuestion(componentCategory,categoryQuestionContainer,categoryCounter,categoryTimer,listQuestions,availableTime=defectTime){
+    const categoryComponent = document.getElementById("category")
+    const categoryCounter = document.getElementById("categoryCounter")
+    const categoryTimer = document.getElementById("categoryTimer")
+    const categoryQuestionContainer = document.getElementById("question-container")
+    const nextQuestionButton = document.getElementById("categoryNextQuestion")
+
 
     const question = listQuestions[indexQuestion];
 
-    const question2 =  listQuestions[indexQuestion-1];
+    //esconder el boton de siguiente
+    nextQuestionButton.classList.add("hidden")
 
+    //cambiar el contador de preguntas
+    categoryCounter.textContent = `${indexQuestion+1}/${listQuestions.length}`
+
+
+    //si aun tengo preguntas
     if(indexQuestion<listQuestions.length){
-        //si tiene una seleccion 
-        if(selectedAnswer!==undefined){
-            //seleccion correcta
-            if(question2.respuestas[question2.respuesta] == selectedAnswer.textContent){
-                selectedAnswer.classList.add("answer--correct")
-                console.log("true validado por boton")
-                puntaje += 100
-            
-            //seleccion incorrecta
-            }else{
-                selectedAnswer.classList.add("answer--incorrect")
-                console.log("false validado por boton")
-            }
 
-            //cerrar el tiempo
-            clearInterval(chronometer)
-
-        }
-
-    }
-
-
-
-    //si hay mas preguntas y tiene alguna selecionada
-    if(indexQuestion==0 || (indexQuestion<listQuestions.length && selectedAnswer!==undefined)){
+        console.log(indexQuestion)
 
         clearInterval(chronometer)
 
-        //cambiar el contador de preguntas
-        categoryCounter.textContent = `${indexQuestion+1}/${listQuestions.length}`
-        categoryTimer.textContent = availableTime
 
-        //iniciar timer
-        setTimer(categoryTimer,availableTime,question)
+        categoryTimer.textContent = availableTime
 
         //crear pregunta
         const newQuestion = createQuestion(listQuestions,indexQuestion)
@@ -218,28 +206,26 @@ function nextQuestion(componentCategory,categoryQuestionContainer,categoryCounte
             categoryQuestionContainer.firstChild.remove()
         }
         
-        //agregar la pregunta en el cotnenedor de pregunta
+        //agregar la pregunta en el contenedor de pregunta
         categoryQuestionContainer.appendChild(newQuestion)
+
+        //iniciar timer
+        setTimer(availableTime,listQuestions)
     
         indexQuestion ++
 
-    
+    }else{
+        clearInterval(chronometer)
+
+        mainCategorys.classList.remove("hidden")
+        categoryComponent.remove()
     }
-
-    if(indexQuestion>=listQuestions.length){
-        console.log("No mas preguntas")
-    }
-
-    
-
-
 
 
 }
 
 
-
-//crea el componente de la pregunta, la lista category va eliminando las preguntas a si que es recursiva..
+//crea el componente de la pregunta
 function createQuestion(listQuestions,index){
 
     //resetear la variable del button almacenado
@@ -262,10 +248,10 @@ function createQuestion(listQuestions,index){
     //agregar respuestas
     question.respuestas.forEach(respuesta=>{
 
-        const questionAnswer = createElement("div",respuesta,{class:"question__answer button",name:"answer"})
+        const questionAnswer = createElement("button",respuesta,{class:"question__answer button",name:"answer"})
 
         //funcion real, controlador
-        questionAnswer.addEventListener("click",()=>selectAnswer(questionAnswer))
+        questionAnswer.addEventListener("click",()=>validateAnswer(question,questionAnswer))
 
         componentQuestion.appendChild(questionAnswer)
 
@@ -276,86 +262,65 @@ function createQuestion(listQuestions,index){
 }
 
 
-//solo debe seleccionar 
-function selectAnswer(buttonSelect){
+//validar seleccion
+function validateAnswer(question,buttonSelect){
 
-    //si hay tiempo disponible puedo seleccionar 
-    if(document.getElementById("categoryTimer").textContent > 0){
+    clearInterval(chronometer)
 
-        //botones respuestas
-        const buttonsAnswer = document.getElementsByName("answer")
+    if(selectedAnswer == undefined){
+        if(question.respuestas[question.respuesta] == buttonSelect.textContent){
+            buttonSelect.classList.add("answer--correct")
+            puntaje += 100
+            
+        }
+        else{
+            buttonSelect.classList.add("answer--incorrect")
+        }
 
-        //si selecciono uno desseleciono a todos
-        buttonsAnswer.forEach(
-            (answer)=>{
-                if(answer !== buttonSelect){
-                    answer.classList.remove("answer--select")
-                }
-            }
-        )
+        const buttonNext = document.getElementById("categoryNextQuestion")
+        buttonNext.classList.remove("hidden")
 
-        buttonSelect.classList.add("answer--select")
-
-        selectedAnswer = buttonSelect
+        //para no dejar seleccionar de nuevo la respuesta
+        selectedAnswer = buttonSelect;
     }
 
 
 
-    // if(question.respuestas[question.respuesta] == buttonSelect.textContent ){
-    //     buttonSelect.classList.add("answer--select")
-    //     console.log("correcta")
-    // }else{
-    //     console.log("incorrecta")
-    // }
-
-    //solo selecciona el boton
-
 }
 
 
-function setTimer(timerComponent,time,question){
+function setTimer(time,listQuestions){
+
+    clearInterval(chronometer)
+
+    const componentCategoryTimer = document.getElementById("categoryTimer")
 
     chronometer =  setInterval(() => {
         time--
-        timerComponent.textContent = time
+
+        console.log("ejecutando")
+
+        //como esto es asyncrono, puedo acceder a cualqueir varibale declarada en su funcion superior WTF
+        //NO HACERLO
+        componentCategoryTimer.textContent = time
 
     
         //si se acaba el tiempo
         if(time==0){
+            console.log("creando nueva pregunta")
 
             clearInterval(chronometer)
 
-            //en caso de que halla sido selecionado un boton
-           if(selectedAnswer !== undefined){
-                if(question.respuestas[question.respuesta] == selectedAnswer.textContent){
-                    selectedAnswer.classList.add("answer--correct")
-                    puntaje += 100
-                }else{
-                    selectedAnswer.classList.add("answer--incorrect")
-                    console.log("false validado por tiempo")
-                }
-
-           }else{
-               
-                console.log("no selecciono nada validado por tiempo")
-
-                //botones respuestas
-                const buttonsAnswer = document.getElementsByName("answer")
-
-                buttonsAnswer.forEach((answer)=>{
-
-                    if(answer.textContent == question.respuestas[question.respuesta]){
-                        answer.classList.add("answer--correct")
-                    }   
-
-
-                })
-           }
+            //crea una nueva pregunta
+            nextQuestion(listQuestions)
             
+
         }
-
-
-
     }, 1000);
 
+}
+
+function insertResultado(){
+    
+    const htmlString = ``
 }
