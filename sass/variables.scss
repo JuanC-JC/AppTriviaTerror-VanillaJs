@@ -1,0 +1,12 @@
+$font-project: "neverwinter";
+$font-gothik: "Bank Gothic Medium";
+
+@font-face{
+    font-family: $font-project;
+    src: url("../assets/fonts/Neverwinter.ttf");
+}
+
+@font-face{
+    font-family: $font-gothik;
+    src: url("../assets/fonts/Bank\ Gothic\ Medium.otf");
+}
