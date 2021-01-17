@@ -105,15 +105,10 @@
 
     }
 
-    // &__img{
-    //     margin: auto;
-    //     width: 70%;
-    //     img{
-            
-    //         max-width: 100%;
-    //         min-height: 100%;
-    //     }
-    // }
+    &__score{
+        font-family: $font-gothik;
+        font-size: 2rem;
+    }
 
     &__description{
         text-align: center;

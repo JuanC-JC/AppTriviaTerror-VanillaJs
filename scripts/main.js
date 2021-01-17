@@ -7,18 +7,19 @@ const formulario = document.getElementById("formulario-nombre")
 
 var puntaje = 0
 var indexQuestion;
-var defectTime = 5
+var defectTime = 10
 var chronometer;
 var selectedAnswer = undefined;
 var userName;
+var categoryActual;
 
 buttonStart.addEventListener("click",(event)=>{ event.preventDefault(); startTrivia()})
 formulario.addEventListener("submit",(event)=>{ event.preventDefault(); startTrivia()})
 
 
-const lastScore = localStorage.getItem("lastScoreTrivia")
 
 function startTrivia(){
+    sessionStorage.clear()
     userName =  userNameInput.value
     if(userName == ""){
         alert("ingrese un nombre")
@@ -41,9 +42,9 @@ function insertCategorys(){
                 imgUrl:"",
                 preguntas:[
                             {
-                                pregunta:"en que pelicula, el protagonista se alimenta de las personas por placer?",
-                                respuestas:["un chamuco","un señorito","un pirilon"],
-                                respuesta:0
+                                pregunta:"¿Cuantas peliculas de la franquicia saw se emitieron?",
+                                respuestas:["5","3","7","9"],
+                                respuesta:3
                             },
                             {
                                 pregunta:"Si buenas hay pan?",
@@ -139,6 +140,7 @@ function insertCategorys(){
                 
             ]
 
+
     const containerCategorysCarousel = createElement("div","",{class:"categorys-carousel"})
     const containerCategorys = createElement("div","",{class:"categorys-container"})
 
@@ -149,14 +151,21 @@ function insertCategorys(){
 
     //generar la categoria en html
     categorys.forEach(
-        (category)=>{
+        (category)=>{ 
+
+            // const score = sessionStorage.getItem(category.name)
+            // if(score !== null){
+            //     category.lastScore = score
+            // }else{
+            //     category.lastScore = 0
+            // }
 
             //creo un elemento html para el componente de categoria
             const componentCategory = createElement("div","",{class:`category category--img-${diferenType}`})
             containerCategorys.appendChild(componentCategory)
 
             const htmlString = `<h1 class="category__name">${category.name}</h1>
-                                <div class="category__img"><img src="${category.imgUrl}" alt=""></div>
+                                <div id="${category.name}" class="category__score">0/${category.preguntas.length*100}</div>
                                 <div class="category__description"><p>${category.description}</p></div>`
 
             //agrego todos los elementos html por la propiedad innerHTML
@@ -190,6 +199,7 @@ function insertCategory(category){
     puntaje = 0
     //indice de pregunta
     indexQuestion = 0
+    categoryActual = category.name
 
     //esconder categorias
     mainCategorys.classList.add("hidden")
@@ -251,7 +261,6 @@ function nextQuestion(listQuestions,availableTime=defectTime){
     //si aun tengo preguntas
     if(indexQuestion<listQuestions.length){
 
-        console.log(indexQuestion)
 
         clearInterval(chronometer)
 
@@ -273,7 +282,7 @@ function nextQuestion(listQuestions,availableTime=defectTime){
         indexQuestion ++
 
     }else{
-        localStorage.setItem("lastScoreTrivia",puntaje)
+        sessionStorage.setItem(categoryActual,puntaje)
         insertResultado(listQuestions)
 
     }
@@ -345,37 +354,6 @@ function validateAnswer(question,buttonSelect){
 }
 
 
-function setTimer(time,listQuestions){
-
-    clearInterval(chronometer)
-
-    const componentCategoryTimer = document.getElementById("categoryTimer")
-
-    chronometer =  setInterval(() => {
-        time--
-
-        console.log("ejecutando")
-
-        //como esto es asyncrono, puedo acceder a cualqueir varibale declarada en su funcion superior WTF
-        //NO HACERLO
-        componentCategoryTimer.textContent = time
-
-    
-        //si se acaba el tiempo
-        if(time==0){
-            console.log("creando nueva pregunta")
-
-            clearInterval(chronometer)
-
-            //crea una nueva pregunta
-            nextQuestion(listQuestions)
-            
-
-        }
-    }, 1000);
-
-}
-
 function insertResultado(listQuestions){
     let mensaje;
     if(puntaje/(listQuestions.length*100) < 1){
@@ -402,11 +380,25 @@ function insertResultado(listQuestions){
 
     //nuevo menu
     playAgain.addEventListener("click",()=>{
-        
         mainCategorys.classList.remove("hidden")
+
+
+
+        //modificar puntajes
+        const score = document.getElementById(categoryActual)
+        const newScore = sessionStorage.getItem(categoryActual)
+
+
+        if(newScore>score.textContent ){
+            score.textContent = newScore
+        }
+
+
+
+
         mainDinamic.innerHTML = ""
         mainDinamic.classList.add("hidden")
-        
+
     })
 
 
@@ -425,3 +417,31 @@ function insertResultado(listQuestions){
 
 }
 
+function setTimer(time,listQuestions){
+
+    clearInterval(chronometer)
+
+    const componentCategoryTimer = document.getElementById("categoryTimer")
+
+    chronometer =  setInterval(() => {
+        time--
+
+        //como esto es asyncrono, puedo acceder a cualqueir varibale declarada en su funcion superior WTF
+        //NO HACERLO
+        componentCategoryTimer.textContent = time
+
+    
+        //si se acaba el tiempo
+        if(time==0){
+            console.log("creando nueva pregunta")
+
+            clearInterval(chronometer)
+
+            //crea una nueva pregunta
+            nextQuestion(listQuestions)
+            
+
+        }
+    }, 1000);
+
+}

@@ -142,6 +142,10 @@
   color: #e6e3e3;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
 }
+.category__score {
+  font-family: "Bank Gothic Medium";
+  font-size: 2rem;
+}
 .category__description {
   text-align: center;
 }
