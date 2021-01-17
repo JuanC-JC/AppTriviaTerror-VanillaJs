@@ -11,7 +11,6 @@ var defectTime = 10
 var chronometer;
 var selectedAnswer = undefined;
 var userName;
-var categoryActual;
 
 buttonStart.addEventListener("click",(event)=>{ event.preventDefault(); startTrivia()})
 formulario.addEventListener("submit",(event)=>{ event.preventDefault(); startTrivia()})
@@ -152,13 +151,9 @@ function insertCategorys(){
     //generar la categoria en html
     categorys.forEach(
         (category)=>{ 
+            
 
-            // const score = sessionStorage.getItem(category.name)
-            // if(score !== null){
-            //     category.lastScore = score
-            // }else{
-            //     category.lastScore = 0
-            // }
+            category.lastHighScore = 0;
 
             //creo un elemento html para el componente de categoria
             const componentCategory = createElement("div","",{class:`category category--img-${diferenType}`})
@@ -229,18 +224,17 @@ function insertCategory(category){
     categoryComponent.appendChild(nextQuestionButton)
        
     nextQuestionButton.addEventListener("click",()=> {
-        nextQuestion(category.preguntas)
+        nextQuestion(category)
     })
 
     //creo la primer pregunta
-    nextQuestion(category.preguntas)
+    nextQuestion(category)
 
 
 }
 
-
 //ingreso de pregunta
-function nextQuestion(listQuestions,availableTime=defectTime){
+function nextQuestion(category,availableTime=defectTime){
 
     const categoryComponent = document.getElementById("category")
     const categoryCounter = document.getElementById("categoryCounter")
@@ -248,10 +242,9 @@ function nextQuestion(listQuestions,availableTime=defectTime){
     const categoryQuestionContainer = document.getElementById("question-container")
     const nextQuestionButton = document.getElementById("categoryNextQuestion")
 
+    const listQuestions = category.preguntas
 
-    const question = listQuestions[indexQuestion];
 
-    //esconder el boton de siguiente
     nextQuestionButton.classList.add("hidden")
 
     //cambiar el contador de preguntas
@@ -261,14 +254,12 @@ function nextQuestion(listQuestions,availableTime=defectTime){
     //si aun tengo preguntas
     if(indexQuestion<listQuestions.length){
 
-
+        //limpiar cronometro y reiniciar el tiempo disponible
         clearInterval(chronometer)
-
-
         categoryTimer.textContent = availableTime
 
         //crear pregunta
-        const newQuestion = createQuestion(listQuestions,indexQuestion)
+        const newQuestion = createQuestion(category,indexQuestion)
         if(categoryQuestionContainer.hasChildNodes()){
             categoryQuestionContainer.firstChild.remove()
         }
@@ -277,13 +268,13 @@ function nextQuestion(listQuestions,availableTime=defectTime){
         categoryQuestionContainer.appendChild(newQuestion)
 
         //iniciar timer
-        setTimer(availableTime,listQuestions)
-    
+        setTimer(availableTime,category)
+        
+        //aumentar el indice de la pregunta
         indexQuestion ++
 
     }else{
-        sessionStorage.setItem(categoryActual,puntaje)
-        insertResultado(listQuestions)
+        insertResultado(category)
 
     }
 
@@ -291,16 +282,13 @@ function nextQuestion(listQuestions,availableTime=defectTime){
 }
 
 //crea el componente de la pregunta
-function createQuestion(listQuestions,index){
+function createQuestion(category,index){
 
     //resetear la variable del button almacenado
     selectedAnswer = undefined;
 
-    //copia de mi parametro de entrada
-    const questions = [...listQuestions];
-
     //pregunta
-    var question = questions[index]
+    var question = category.preguntas[index]
 
     const componentQuestion = createElement("div","",{class:"question"})
     
@@ -325,7 +313,6 @@ function createQuestion(listQuestions,index){
     return componentQuestion
 
 }
-
 
 //validar seleccion
 function validateAnswer(question,buttonSelect){
@@ -354,7 +341,11 @@ function validateAnswer(question,buttonSelect){
 }
 
 
-function insertResultado(listQuestions){
+function insertResultado(category){
+
+
+    let listQuestions = category.preguntas;
+
     let mensaje;
     if(puntaje/(listQuestions.length*100) < 1){
         mensaje = "Puedes hacerlo mejor!"
@@ -382,19 +373,15 @@ function insertResultado(listQuestions){
     playAgain.addEventListener("click",()=>{
         mainCategorys.classList.remove("hidden")
 
+        
 
+        const lastHighScore = category.lastHighScore;
+        const newScore = puntaje;
 
-        //modificar puntajes
-        const score = document.getElementById(categoryActual)
-        const newScore = sessionStorage.getItem(categoryActual)
-
-
-        if(newScore>score.textContent ){
-            score.textContent = newScore
+        if(newScore > lastHighScore){
+            category.lastHighScore = newScore;
+            document.getElementById(category.name).textContent = newScore;
         }
-
-
-
 
         mainDinamic.innerHTML = ""
         mainDinamic.classList.add("hidden")
@@ -417,9 +404,12 @@ function insertResultado(listQuestions){
 
 }
 
-function setTimer(time,listQuestions){
+
+function setTimer(time,category){
 
     clearInterval(chronometer)
+
+    listQuestions = category.preguntas
 
     const componentCategoryTimer = document.getElementById("categoryTimer")
 
@@ -438,7 +428,7 @@ function setTimer(time,listQuestions){
             clearInterval(chronometer)
 
             //crea una nueva pregunta
-            nextQuestion(listQuestions)
+            nextQuestion(category)
             
 
         }
