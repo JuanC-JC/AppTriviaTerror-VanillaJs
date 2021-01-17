@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .resultado{
     width: 90%;
     max-width: 700px;
@@ -5,6 +7,7 @@
     flex-wrap: wrap;
     justify-content: center;
     font-family:$font-project;
+    background:rgba($color: white,$alpha: 0.7);
 
     &__title{
         text-align: center;

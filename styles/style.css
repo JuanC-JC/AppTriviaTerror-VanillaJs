@@ -65,6 +65,14 @@
   color: white;
 }
 
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
 .main-categorys {
   display: flex;
   justify-content: center;
@@ -166,6 +174,14 @@
   transform: scale(1.15);
 }
 
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
 .main-dinamic {
   width: 100%;
   height: 100%;
@@ -175,52 +191,13 @@
   background: url(../assets/fondo-preguntas.jpg) center/cover no-repeat;
 }
 
-.resultado {
-  width: 90%;
-  max-width: 700px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+@font-face {
   font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
 }
-.resultado__title {
-  text-align: center;
-  font-size: 4rem;
-  color: white;
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
-}
-.resultado__mensaje {
-  text-align: center;
-  font-weight: 400;
-  font-size: 2rem;
-  color: white;
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
-  width: 90%;
-  margin-bottom: 20px;
-}
-.resultado__button {
+@font-face {
   font-family: "Bank Gothic Medium";
-  font-size: 1.5rem;
-  width: 90%;
-  max-width: 320px;
-  margin: 10px;
-  opacity: 0.9;
-}
-.resultado__button:hover {
-  color: white;
-  background: rgba(43, 31, 43, 0.9);
-}
-
-@keyframes changeLetter {
-  0% {
-    content: ">";
-  }
-  50% {
-    color: white;
-  }
-  100% {
-    content: ">>";
-  }
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
 }
 .category-item {
   display: grid;
@@ -343,6 +320,59 @@
   background: #FF8398;
 }
 
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.resultado {
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: "neverwinter";
+  background: rgba(255, 255, 255, 0.7);
+}
+.resultado__title {
+  text-align: center;
+  font-size: 4rem;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+}
+.resultado__mensaje {
+  text-align: center;
+  font-weight: 400;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  width: 90%;
+  margin-bottom: 20px;
+}
+.resultado__button {
+  font-family: "Bank Gothic Medium";
+  font-size: 1.5rem;
+  width: 90%;
+  max-width: 320px;
+  margin: 10px;
+  opacity: 0.9;
+}
+.resultado__button:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
+}
+
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
 * {
   margin: 0;
   padding: 0;

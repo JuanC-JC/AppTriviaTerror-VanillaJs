@@ -1,17 +1,131 @@
-/* Error: Undefined variable.
- *    ,
- * 60 |         font-family: $font-project;
- *    |                      ^^^^^^^^^^^^^
- *    '
- *   sass\dinamic-questions.scss 60:22  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 60 \2502          font-family: $font-project;\d\a    \2502                       ^^^^^^^^^^^^^\a    \2575 \a   sass\\dinamic-questions.scss 60:22  root stylesheet";
+@charset "UTF-8";
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
 }
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.category-item {
+  display: grid;
+  justify-items: center;
+  width: 90%;
+  max-width: 750px;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(43, 31, 43, 0.7);
+  box-shadow: 0px 5px 8px rgba(12, 12, 12, 0.5);
+}
+.category-item .category__contador {
+  justify-self: flex-end;
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.category-item .category__timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  color: white;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  border: 2px solid #E8266B;
+  transform: translateY(10px);
+}
+.category-item .category__title {
+  font-family: "neverwinter";
+  font-weight: 400;
+  font-size: 4rem;
+  color: #e6e3e3;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+}
+.category-item .category__next-question {
+  font-family: "Bank Gothic Medium";
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s linear 0s;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.category-item .category__next-question::before {
+  content: "»";
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-right: 20px;
+  transition: all 0.2s linear 0s;
+}
+.category-item .category__next-question:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
+  padding-right: 45px;
+}
+.category-item .category__next-question:hover:before {
+  opacity: 1;
+}
+
+.category__question {
+  width: 100%;
+}
+.category__question .question {
+  display: grid;
+  margin-bottom: 20px;
+  justify-items: center;
+  gap: 10px;
+}
+.category__question .question__title {
+  font-family: "Bank Gothic Medium";
+  font-weight: 400;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2B1F2B;
+  border-radius: 10px;
+  padding: 15px 0px;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.category__question .question__answer {
+  font-family: "Bank Gothic Medium";
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 15px;
+  padding: 15px 15px;
+  margin: 0;
+  transition: background 0.3s 0s;
+  opacity: 0.9;
+}
+.category__question .question__answer:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
+}
+.category__question .question__answer.answer--correct {
+  color: white;
+  background: #0AC08D;
+}
+.category__question .question__answer.answer--incorrect {
+  color: white;
+  background: #FF8398;
+}
+
+/*# sourceMappingURL=dinamic-questions.css.map */

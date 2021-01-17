@@ -1,17 +1,46 @@
-/* Error: Undefined variable.
- *   ,
- * 7 |     font-family:$font-project;
- *   |                 ^^^^^^^^^^^^^
- *   '
- *   sass\dinamic-results.scss 7:17  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 7 \2502      font-family:$font-project;\d\a   \2502                  ^^^^^^^^^^^^^\a   \2575 \a   sass\\dinamic-results.scss 7:17  root stylesheet";
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
 }
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.resultado {
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: "neverwinter";
+  background: rgba(255, 255, 255, 0.7);
+}
+.resultado__title {
+  text-align: center;
+  font-size: 4rem;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+}
+.resultado__mensaje {
+  text-align: center;
+  font-weight: 400;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  width: 90%;
+  margin-bottom: 20px;
+}
+.resultado__button {
+  font-family: "Bank Gothic Medium";
+  font-size: 1.5rem;
+  width: 90%;
+  max-width: 320px;
+  margin: 10px;
+  opacity: 0.9;
+}
+.resultado__button:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
+}
+
+/*# sourceMappingURL=dinamic-results.css.map */

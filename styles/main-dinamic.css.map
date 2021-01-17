@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../sass/main-dinamic.scss"],"names":[],"mappings":"AAAA;EACI;EACA;EACA;EACA;EACA;EAGA","file":"main-dinamic.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/variables.scss","../sass/main-dinamic.scss"],"names":[],"mappings":"AAGA;EACI,aAJW;EAKX;;AAGJ;EACI,aARU;EASV;;ACRJ;EACI;EACA;EACA;EACA;EACA;EAGA","file":"main-dinamic.css"}

@@ -1,15 +1,5 @@
 //respuestas
-@keyframes changeLetter {
-    0% {
-      content: ">";
-    }
-    50% {
-      color: white;
-    }
-    100% {
-      content: ">>";
-    }
-  }
+@import "./variables.scss";
 
 //contenedor de categoria (timer,contador,nombrecategoria)
 .category-item{
