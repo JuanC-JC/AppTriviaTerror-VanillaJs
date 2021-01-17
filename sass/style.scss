@@ -99,8 +99,8 @@ main{
     .category__question{
         .question{
             gap: 20px 10px;
+            grid-template-columns: 1fr 1fr;
             &__title{
-                //hace que se cree automaticamente otra columna
                 grid-column-start:span 2;
             }
         }

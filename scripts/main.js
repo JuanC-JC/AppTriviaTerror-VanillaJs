@@ -11,11 +11,13 @@ var defectTime = 10
 var chronometer;
 var selectedAnswer = undefined;
 var userName;
+var test;
 
 buttonStart.addEventListener("click",(event)=>{ event.preventDefault(); startTrivia()})
 formulario.addEventListener("submit",(event)=>{ event.preventDefault(); startTrivia()})
 
 
+//category funciona gracias a que el objeto se asigno en una funcion anonima (para cada boton de seleccion categorias)
 
 function startTrivia(){
     sessionStorage.clear()
@@ -38,21 +40,20 @@ function insertCategorys(){
 
     const categorys = [{name:"peliculas",
                 description:"¿las peliculas de terror son lo tuyo? <br> averiguemolo",
-                imgUrl:"",
                 preguntas:[
                             {
                                 pregunta:"¿Cuantas peliculas de la franquicia saw se emitieron?",
-                                respuestas:["5","3","7","9"],
+                                respuestas:["5 peliculas","3 peliculas","7 peliculas","9 peliculas"],
                                 respuesta:3
                             },
                             {
-                                pregunta:"Si buenas hay pan?",
-                                respuestas:["no sr wtf","un señorito","un pirilon"],
-                                respuesta:0
+                                pregunta:"¿En que pelicula el protagonista viola a su propio hijo?",
+                                respuestas:["hanibal lecter","dracula 2","serbian film","el hoyo"],
+                                respuesta:2
                             },
                             {
-                                pregunta:"quien soy yo?",
-                                respuestas:["un chamuco","un señorito","un pirilon"],
+                                pregunta:"¿La Famosa frase 'i see dead people(veo gente muerta), de que pelicula es?",
+                                respuestas:["memorias de un eterno resplandor","dracula","sexto sentido","alien covenant"],
                                 respuesta:0
                             },
                             {
@@ -67,70 +68,91 @@ function insertCategorys(){
 
                 {name:"juegos",
                 description:"¿que tan masoquista eres, nada como un buen scream?",
-                imgUrl:".",
                 preguntas:[
                             {
-                                pregunta:"quien soy yo?",
-                                respuestas:["un chamuco","un señorito","un pirilon"],
-                                respuesta:0
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:1
                             },
                             {
-                                pregunta:"Si buenas hay pan?",
-                                respuestas:["no sr wtf","un señorito","un pirilon"],
-                                respuesta:0
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:2
+                            },
+                            {
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:2
                             }
                         ]
                 
                 },
 
-                {name:"otro",
-                description:"lorem papus maximus de nuevo no se que escribir aca uwu masdasda",
-                imgUrl:".",
+                {name:"test",
+                description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
                 preguntas:[
                             {
-                                pregunta:"quien soy yo?",
-                                respuestas:["un chamuco","un señorito","un pirilon"],
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:3
+                            },
+                            {
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
                                 respuesta:0
                             },
                             {
-                                pregunta:"Si buenas hay pan?",
-                                respuestas:["no sr wtf","un señorito","un pirilon"],
-                                respuesta:0
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:2
+                            },
+                            {
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:2
+                            },
+                            {
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:2
                             }
                         ]
                         
                 },
 
-                {name:"otro",
-                description:"lorem papus maximus de nuevo no se que escribir aca uwu masdasda",
-                imgUrl:".",
+                {name:"alguno",
+                description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
                 preguntas:[
                             {
-                                pregunta:"quien soy yo?",
-                                respuestas:["un chamuco","un señorito","un pirilon"],
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:1
+                            },
+                            {
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
                                 respuesta:0
                             },
                             {
-                                pregunta:"Si buenas hay pan?",
-                                respuestas:["no sr wtf","un señorito","un pirilon"],
-                                respuesta:0
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:2
                             }
                         ]
                         
                 },
 
-                {name:"otro",
-                description:"lorem papus maximus de nuevo no se que escribir aca uwu masdasda",
-                imgUrl:".",
+                {name:"sin ideas",
+                description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
                 preguntas:[
                             {
-                                pregunta:"quien soy yo?",
-                                respuestas:["un chamuco","un señorito","un pirilon"],
-                                respuesta:0
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
+                                respuesta:3
                             },
                             {
-                                pregunta:"Si buenas hay pan?",
-                                respuestas:["no sr wtf","un señorito","un pirilon"],
+                                pregunta:"lorem ipsum dolor sit amet",
+                                respuestas:["lorem ipsum","dolor sit amet","consectur adpiscing elit","sed do eiusmod"],
                                 respuesta:0
                             }
                         ]
@@ -340,7 +362,7 @@ function validateAnswer(question,buttonSelect){
 
 }
 
-
+//insertar resultados
 function insertResultado(category){
 
 
@@ -356,8 +378,8 @@ function insertResultado(category){
     const htmlString =  `<div class="resultado">
                             <h2 class="resultado__title">${userName} has obtenido un puntaje de ${puntaje}/${listQuestions.length*100} </h2>
                             <h4 class="resultado__mensaje">${mensaje}</h4>
-                            <div class="button" id="play-againg">Play Againg!</div>
-                            <div class="button" id="new-player">New Player</div>
+                            <div id="play-againg" class="button resultado__button resultado__button--again" >Play Againg!</div>
+                            <div id="new-player" class="button resultado__button resultado__button--new" >New Player</div>
                         </div>`
 
 
@@ -380,7 +402,7 @@ function insertResultado(category){
 
         if(newScore > lastHighScore){
             category.lastHighScore = newScore;
-            document.getElementById(category.name).textContent = newScore;
+            document.getElementById(category.name).textContent = `${newScore}/${category.preguntas.length*100}`;
         }
 
         mainDinamic.innerHTML = ""

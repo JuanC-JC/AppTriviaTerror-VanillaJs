@@ -178,21 +178,37 @@
 .resultado {
   width: 90%;
   max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: "neverwinter";
 }
 .resultado__title {
   text-align: center;
-  font-family: "neverwinter";
   font-size: 4rem;
   color: white;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
 }
 .resultado__mensaje {
   text-align: center;
-  font-family: "neverwinter";
   font-weight: 400;
   font-size: 2rem;
   color: white;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  width: 90%;
+  margin-bottom: 20px;
+}
+.resultado__button {
+  font-family: "Bank Gothic Medium";
+  font-size: 1.5rem;
+  width: 90%;
+  max-width: 320px;
+  margin: 10px;
+  opacity: 0.9;
+}
+.resultado__button:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
 }
 
 @keyframes changeLetter {
@@ -300,6 +316,7 @@
   padding: 15px 0px;
   font-size: 1rem;
   width: 100%;
+  margin-bottom: 10px;
 }
 .category__question .question__answer {
   font-family: "Bank Gothic Medium";
@@ -385,6 +402,7 @@ main {
 
   .category__question .question {
     gap: 20px 10px;
+    grid-template-columns: 1fr 1fr;
   }
   .category__question .question__title {
     grid-column-start: span 2;
