@@ -1,5 +1,17 @@
 @import "./variables.scss";
 
+// $margin-x-container: 10px;
+// $margin-y-carousel:40px;
+// $width-carousel-buttons: 40px;
+// $height-item:450px;
+// $border-radius-items:20px;
+
+$margin-x-container: 10px;
+$margin-y-carousel:40px;
+$width-carousel-buttons: 40px;
+$height-item:450px;
+$border-radius-items:20px;
+
 // Menu Categorias //
 .main-categorys{
 
@@ -13,42 +25,59 @@
     
 }
 
-
 .categorys{
     position: relative;
     max-width: 100%;
+    padding: 0px $margin-x-container+$width-carousel-buttons;
 }
 
 .categorys-carousel{
     overflow-x:scroll;
     scroll-snap-type:x mandatory;
-    padding: 40px 0px;
-    margin: 0px 10px;
+    padding: $margin-y-carousel 0px;
+    scroll-behavior: smooth;
 
-    
     &::-webkit-scrollbar{
-        width: 8px;     /* Tamaño del scroll en vertical */
-        height: 8px;    /* Tamaño del scroll en horizontal */
+        display:none;
+        // width: 8px;     /* Tamaño del scroll en vertical */
+        // height: 8px;    /* Tamaño del scroll en horizontal */
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 4px;
+        // background: #ccc;
+        // border-radius: 4px;
     }
 }
-
 
 .categorys-carousel-buttons{
 
     .carousel-button{
         position: absolute;
         top: 0;
-        right:20px;
-        width: 40px;
-        height: 430px;
-        background: url(../assets/button-scroll.png) center/contain no-repeat;        
+        width: $width-carousel-buttons;
+        height: $height-item;
+        background: white;
+        margin-top:$margin-y-carousel;
+        background: url(../assets/button-scroll.png) center/contain no-repeat;
+        cursor: pointer;
+        z-index: 1;
+        background-color: rgba(0,0,0,0.5);
+        
 
+        &--left{
+            border-radius: $border-radius-items 0px 0px $border-radius-items;
+            left: $margin-x-container;
+           
+        }
+        &--right{
+            transform: scaleX(-1);
+            border-radius: $border-radius-items 0px 0px $border-radius-items;
+            right: $margin-x-container;
+        }
 
+        &:hover{
+            background-color: rgba(0,0,0,0.8);
+        }
     }
 }
 
@@ -79,7 +108,7 @@
     opacity: 0.9;
 
     min-width:290px;
-    min-height: 450px;
+    min-height: $height-item;
 
     padding: 10px;
     margin-right: 10px;
@@ -98,6 +127,7 @@
 
     &:first-child{
         transform-origin: left center;
+
     }
 
     &:last-child{
@@ -122,7 +152,6 @@
 
     &__description{
         text-align: center;
-        // margin: 0px 0px 120px 0px;
         font-size: 2.2rem;
         text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 

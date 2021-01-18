@@ -34,6 +34,7 @@ function startTrivia(){
 }
 
 
+//inyect (componentCategorys "menu de categorias" to mainDinamic)
 function insertCategorys(){
 
     const categorys = [{name:"peliculas",
@@ -163,13 +164,13 @@ function insertCategorys(){
     const CategorysCarousel = createElement("div","",{class:"categorys-carousel"},componentCategorys)
     const CategorysItems = createElement("div","",{class:"categorys-items"},CategorysCarousel)
 
-    //add  (component category-item = title,score,description,button) to category-items
+    // add (htmlComponent categoryItems => htmlComponents (title,score,description,button) )
     categorys.forEach(
         (category)=>{ 
             
             category.lastHighScore = 0;
 
-            //creo un elemento html para el componente de categoria
+             
             const componentCategory = createElement("div","",{class:`category-item`},CategorysItems)
                 
                 const itemName = createElement("h1",
@@ -179,7 +180,7 @@ function insertCategorys(){
 
                 const itemScore = createElement("div",
                                                 `${category.lastHighScore}/${category.preguntas.length*100}`,
-                                                {id:category.name,class:"category-item__name"},
+                                                {id:category.name,class:"category-item__score"},
                                                 componentCategory)
                 
                 const itemDescription = createElement("div",
@@ -197,26 +198,38 @@ function insertCategorys(){
 
     })
 
-    //add (component categorys-buttons-scroll = left- rigth) to main component categorys
-    const categorysButtonsScroll = createElement("div","",{class:"categorys-carousel-buttons"},componentCategorys)
-        const buttonLeft = createElement("div",
-                                        "",
-                                        {class:"carousel-button carousel-button--left"},
-                                        categorysButtonsScroll)
-        const buttonRight = createElement("div",
-                                        "",
-                                        {class:"carousel-button carousel-button--right"},
-                                        categorysButtonsScroll)
-
-
     
+    // add (htmlComponent categorybuttonsScroll => htmlComponents (left,rigth))
+    const categorysButtonsScroll = createElement("div","",{class:"categorys-carousel-buttons"},componentCategorys)
+        {
+            const buttonLeft = createElement("div",
+                                            "",
+                                            {
+                                                id:"carouselButtonLeft",
+                                                class:"carousel-button carousel-button--left"
+                                            },
+                                            categorysButtonsScroll)
+            const buttonRight = createElement("div",
+                                            "",
+                                            {
+                                                id:"carouselButtonRight",
+                                                class:"carousel-button carousel-button--right"
+                                            },
+                                            categorysButtonsScroll)        
+            
+            buttonLeft.addEventListener("click",()=>moveCarousel(CategorysCarousel,"left"))
+            buttonRight.addEventListener("click",()=>moveCarousel(CategorysCarousel,"right"))
+        
+        }   
 
-    // agreagado manual para evitar que en cada componente el dom se recargue
+
+    // add (domElement mainCategorys => htmlComponent componentCategorys "menu categorias" )
     mainCategorys.appendChild(componentCategorys)
 
 }
 
 
+//inyect (category "categoria seleccionada" to mainDinamic)
 function insertCategory(category){
 
     //reiniciar el puntaje
@@ -229,11 +242,9 @@ function insertCategory(category){
     mainCategorys.classList.add("hidden")
     mainDinamic.classList.remove("hidden")
 
-
-    //creation component category
+    //add  (component category => counter,timer,title,questionContainer) 
     const categoryComponent = createElement("div","",{id:"category",class:"category"})
 
-        //add  (component category = counter,timer,title,questionContainer) to category             
         const categoryCounter = createElement("div",
                                             `1/${category.preguntas.length}`,
                                             {
@@ -277,7 +288,7 @@ function insertCategory(category){
             })
 
 
-    //se agrega al final por cuestiones de rendimiento
+    //add (component categoryComponent => domElement mainDinamic )
     mainDinamic.appendChild(categoryComponent)
 
     //inicio de preguntas
@@ -286,7 +297,8 @@ function insertCategory(category){
 
 }
 
-//ingreso de pregunta
+
+//inyect (question to category)
 function nextQuestion(category,availableTime=defectTime){
 
     //obtengo todas las variables
@@ -308,22 +320,26 @@ function nextQuestion(category,availableTime=defectTime){
     //si existen preguntas disponibles
     if(indexQuestion<listQuestions.length){
 
-        //limpiar el cronometro
-        clearInterval(chronometer)
+        //resetear la variable del button almacenado
+        selectedAnswer = undefined;
+
 
         //actualizar el mensaje de tiempo disponible
         categoryTimer.textContent = availableTime
 
         //crear pregunta
         const newQuestion = createQuestion(category,indexQuestion)
+
+        //remuevo la pregunta anterior 
         if(categoryQuestionContainer.hasChildNodes()){
             categoryQuestionContainer.firstChild.remove()
         }
         
-        //agregar la pregunta en el contenedor de pregunta
+        //add (component newQuestion(answers) => domElement categoryquestionContainer)
         categoryQuestionContainer.appendChild(newQuestion)
 
-        //iniciar timer
+
+        // iniciar timer
         setTimer(availableTime,category)
         
         //aumentar el indice de la pregunta
@@ -337,64 +353,71 @@ function nextQuestion(category,availableTime=defectTime){
 
 }
 
-//crea el componente de la pregunta
+
+//return => htmlComponent ( question (title,answers))
 function createQuestion(category,index){
 
-    //resetear la variable del button almacenado
-    selectedAnswer = undefined;
 
-    //pregunta
     var question = category.preguntas[indexQuestion]
+    var answerButtons = []
 
+    //add (component componentQuestion <= title)
     const componentQuestion = createElement("div","",{class:"question"})
-    
-    { //componentes de pregunta "titulo"
-        let questionTitle = createElement("h4",question.pregunta,{class:"question__title"})
-        componentQuestion.appendChild(questionTitle)
-    }
-    
+        
+        const questionTitle = createElement("h4",
+                                            question.pregunta,
+                                            {class:"question__title"},
+                                            componentQuestion)
 
-    //agregar respuestas
+
+    //add (component componentQuestion <= answers)
     question.respuestas.forEach(respuesta=>{
 
-        const questionAnswer = createElement("button",respuesta,{class:"question__answer button"})
+        const questionAnswer = createElement("button",
+                                                respuesta,
+                                                {class:"question__answer button"},
+                                                componentQuestion)
 
-        //funcion real, controlador
-        questionAnswer.addEventListener("click",()=>validateAnswer(question,questionAnswer))
+        
+        answerButtons.push(questionAnswer)
 
-        componentQuestion.appendChild(questionAnswer)
+        questionAnswer.onclick = () => {
+            validateAnswer(question,questionAnswer)
+            _removeEventClick(answerButtons)
+        }
+
+        // questionAnswer.addEventListener("click",validate)
 
     })
 
+    
     return componentQuestion
 
 }
 
+
 //validar seleccion
 function validateAnswer(question,buttonSelect){
 
+    //detiene el tiempo por que ya no lo requiero
     clearInterval(chronometer)
 
-    if(selectedAnswer == undefined){
-        if(question.respuestas[question.respuesta] == buttonSelect.textContent){
-            buttonSelect.classList.add("answer--correct")
-            puntaje += 100
-            
-        }
-        else{
-            buttonSelect.classList.add("answer--incorrect")
-        }
 
-        const buttonNext = document.getElementById("categoryNextQuestion")
-        buttonNext.classList.remove("hidden")
-
-        //para no dejar seleccionar de nuevo la respuesta
-        selectedAnswer = buttonSelect;
+    if(question.respuestas[question.respuesta] == buttonSelect.textContent){
+        buttonSelect.classList.add("answer--correct")
+        puntaje += 100
+        
+    }
+    else{
+        buttonSelect.classList.add("answer--incorrect")
     }
 
-
+    //remover eventos
+    const buttonNext = document.getElementById("categoryNextQuestion")
+    buttonNext.classList.remove("hidden")
 
 }
+
 
 //insertar resultados
 function insertResultado(category){
@@ -461,8 +484,9 @@ function insertResultado(category){
 }
 
 
-function setTimer(time,category){
+function setTimer(time,category,buttonsAnswer){
 
+    //si llegan a declararme de nuevo debo lipiarme antes
     clearInterval(chronometer)
 
     listQuestions = category.preguntas
@@ -470,6 +494,8 @@ function setTimer(time,category){
     const componentCategoryTimer = document.getElementById("categoryTimer")
 
     chronometer =  setInterval(() => {
+
+        console.log("EJECUTANDO")
         time--
 
         //como esto es asyncrono, puedo acceder a cualqueir varibale declarada en su funcion superior WTF
@@ -481,13 +507,22 @@ function setTimer(time,category){
         if(time==0){
             console.log("creando nueva pregunta")
 
+            //ya no debo pasar mas por aca a si que me borro
             clearInterval(chronometer)
 
-            //crea una nueva pregunta
-            nextQuestion(category)
             
+            //aparecer el boton de siguiente
+            document.getElementById("categoryNextQuestion").classList.remove("hidden")
 
+            const answerButtons = [...document.getElementsByClassName("question__answer")]
+            _removeEventClick(answerButtons)
+
+            //crea una nueva pregunta 
+            // nextQuestion(category)
+            
         }
     }, 1000);
 
 }
+
+

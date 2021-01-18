@@ -6,7 +6,6 @@ function setAttributes(element,attributes={}){
     }
 }
 
-
 //asignacion de padre solo con elementos que no estan en el dom
 function createElement(type,text="",attributes={},parent=undefined){
     const element =  document.createElement(type)
@@ -16,9 +15,18 @@ function createElement(type,text="",attributes={},parent=undefined){
     }
     
     // element.textContent = createtext
-    element.appendChild(document.createTextNode(text))
+    if(text !== ""){
+        element.appendChild(document.createTextNode(text))
+    }
+
     setAttributes(element,attributes)
 
     return element
 
+}
+
+function _removeEventClick(components){
+    for(component of components){
+        component.onclick = "";
+    }
 }
