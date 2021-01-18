@@ -7,11 +7,12 @@ const formulario = document.getElementById("formulario-nombre")
 
 var puntaje = 0
 var indexQuestion;
-var defectTime = 10
+var defectTime = 3;
 var chronometer;
 var selectedAnswer = undefined;
 var userName;
-var test;
+
+
 
 formulario.addEventListener("submit",(event)=>{ event.preventDefault(); startTrivia()})
 
@@ -36,7 +37,7 @@ function startTrivia(){
 function insertCategorys(){
 
     const categorys = [{name:"peliculas",
-                description:"¿las peliculas de terror son lo tuyo? <br> averiguemolo",
+                description:"¿las peliculas de terror son lo tuyo? averiguemolo",
                 preguntas:[
                             {
                                 pregunta:"¿Cuantas peliculas de la franquicia saw se emitieron?",
@@ -158,54 +159,60 @@ function insertCategorys(){
                 
             ]
 
+    const componentCategorys = createElement("div","",{class:"categorys"})
+    const CategorysCarousel = createElement("div","",{class:"categorys-carousel"},componentCategorys)
+    const CategorysItems = createElement("div","",{class:"categorys-items"},CategorysCarousel)
 
-    const CategorysCarousel = createElement("div","",{class:"categorys-carousel"})
-    const CategorysItems = createElement("div","",{class:"categorys-container"})
-
-    CategorysCarousel.appendChild(CategorysItems)
-
-    let diferenType = 1
-    //insertando html de categorys 
-
-    //generar la categoria en html
+    //add  (component category-item = title,score,description,button) to category-items
     categorys.forEach(
         (category)=>{ 
             
-
             category.lastHighScore = 0;
 
             //creo un elemento html para el componente de categoria
-            const componentCategory = createElement("div","",{class:`category category--img-${diferenType}`})
-            CategorysItems.appendChild(componentCategory)
+            const componentCategory = createElement("div","",{class:`category-item`},CategorysItems)
+                
+                const itemName = createElement("h1",
+                                                category.name,
+                                                {class:"category-item__name"},
+                                                componentCategory)
 
-            const htmlString = `<h1 class="category__name">${category.name}</h1>
-                                <div id="${category.name}" class="category__score">0/${category.preguntas.length*100}</div>
-                                <div class="category__description"><p>${category.description}</p></div>`
+                const itemScore = createElement("div",
+                                                `${category.lastHighScore}/${category.preguntas.length*100}`,
+                                                {id:category.name,class:"category-item__name"},
+                                                componentCategory)
+                
+                const itemDescription = createElement("div",
+                                                category.description,
+                                                {class:"category-item__description"},
+                                                componentCategory)
 
-            //agrego todos los elementos html por la propiedad innerHTML
-            componentCategory.innerHTML += htmlString
+                const itemButton = createElement("div",
+                                                "",
+                                                {class:"category-item__button"},
+                                                componentCategory)
 
-            //creo un botton para no tener que hacer un selector luego de creado por innerhtml
-            const componentButtonCategory = createElement("div","",{class:"category__button"})
+            componentCategory.addEventListener("click",()=>{insertCategory(category)})
 
-      
 
-            componentCategory.addEventListener("click",()=>{insertCategory({...category})})
-
-            componentCategory.appendChild(componentButtonCategory)
-
-    
-            diferenType == 2 ? diferenType=1: diferenType++;
     })
 
-    mainCategorys.appendChild(CategorysCarousel)
+    //add (component categorys-buttons-scroll = left- rigth) to main component categorys
+    const categorysButtonsScroll = createElement("div","",{class:"categorys-carousel-buttons"},componentCategorys)
+        const buttonLeft = createElement("div",
+                                        "",
+                                        {class:"carousel-button carousel-button--left"},
+                                        categorysButtonsScroll)
+        const buttonRight = createElement("div",
+                                        "",
+                                        {class:"carousel-button carousel-button--right"},
+                                        categorysButtonsScroll)
+
+
     
-    const categoryButtonsScroll = createElement("div","",{class:"categorys-carousel-buttons"})
 
-    categoryButtonsScroll.innerHTML =   `<div class="carousel-button carousel-button--left"></div>
-                                         <div class="carousel-button carousel-button--rigth"></div>`
-
-    mainCategorys.appendChild(categoryButtonsScroll)
+    // agreagado manual para evitar que en cada componente el dom se recargue
+    mainCategorys.appendChild(componentCategorys)
 
 }
 
@@ -223,33 +230,57 @@ function insertCategory(category){
     mainDinamic.classList.remove("hidden")
 
 
-    //creo el componente categoria 
-    const categoryComponent = createElement("div","",{id:"category",class:"category-item"})
+    //creation component category
+    const categoryComponent = createElement("div","",{id:"category",class:"category"})
 
-         //componentes de la categoria
-        const categoryCounter = createElement("div",`1/${category.preguntas.length}`,{id:"categoryCounter",class:"category__contador"})
-        const categoryTimer = createElement("div","",{id:"categoryTimer",class:"category__timer"})
-        const categoryTitle = createElement("h2",category.name,{class:"category__title"})
-        const categoryQuestionContainer = createElement("div","",{id:"question-container",class:"category__question"})
+        //add  (component category = counter,timer,title,questionContainer) to category             
+        const categoryCounter = createElement("div",
+                                            `1/${category.preguntas.length}`,
+                                            {
+                                                id:"categoryCounter",
+                                                class:"category__contador"
+                                            },
+                                            categoryComponent)
+
+        const categoryTimer = createElement("div",
+                                            "",
+                                            {
+                                                id:"categoryTimer",
+                                                class:"category__timer"
+                                            },
+                                            categoryComponent)
+
+        const categoryTitle = createElement("h2",
+                                            category.name,
+                                            {class:"category__title"},
+                                            categoryComponent)
+
+        const categoryQuestionContainer = createElement("div",
+                                            "",
+                                            {
+                                                id:"categoryQuestion",
+                                                class:"category__question"
+                                            },
+                                            categoryComponent)
         
-            categoryComponent.appendChild(categoryCounter)
-            categoryComponent.appendChild(categoryTimer)
-            categoryComponent.appendChild(categoryTitle)    
-            categoryComponent.appendChild(categoryQuestionContainer)
-
+        const nextQuestionButton = createElement("div",
+                                                "next",
+                                                {
+                                                    id:"categoryNextQuestion",
+                                                    class:"category__next-question button hidden"
+                                                },
+                                                categoryComponent)
     
-    //añade la categoria al mainDinamic
+       
+            nextQuestionButton.addEventListener("click",()=> {
+                nextQuestion(category)
+            })
+
+
+    //se agrega al final por cuestiones de rendimiento
     mainDinamic.appendChild(categoryComponent)
 
-    //componente boton
-    const nextQuestionButton = createElement("div","next",{id:"categoryNextQuestion",class:"category__next-question button hidden"})
-    categoryComponent.appendChild(nextQuestionButton)
-       
-    nextQuestionButton.addEventListener("click",()=> {
-        nextQuestion(category)
-    })
-
-    //creo la primer pregunta
+    //inicio de preguntas
     nextQuestion(category)
 
 
@@ -258,26 +289,29 @@ function insertCategory(category){
 //ingreso de pregunta
 function nextQuestion(category,availableTime=defectTime){
 
+    //obtengo todas las variables
     const categoryComponent = document.getElementById("category")
     const categoryCounter = document.getElementById("categoryCounter")
     const categoryTimer = document.getElementById("categoryTimer")
-    const categoryQuestionContainer = document.getElementById("question-container")
+    const categoryQuestionContainer = document.getElementById("categoryQuestion")
     const nextQuestionButton = document.getElementById("categoryNextQuestion")
 
     const listQuestions = category.preguntas
 
-
+    //cada pregunta debe hacer que el boton este visible de nuevo
     nextQuestionButton.classList.add("hidden")
 
     //cambiar el contador de preguntas
     categoryCounter.textContent = `${indexQuestion+1}/${listQuestions.length}`
 
 
-    //si aun tengo preguntas
+    //si existen preguntas disponibles
     if(indexQuestion<listQuestions.length){
 
-        //limpiar cronometro y reiniciar el tiempo disponible
+        //limpiar el cronometro
         clearInterval(chronometer)
+
+        //actualizar el mensaje de tiempo disponible
         categoryTimer.textContent = availableTime
 
         //crear pregunta

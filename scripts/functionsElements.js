@@ -7,10 +7,16 @@ function setAttributes(element,attributes={}){
 }
 
 
-function createElement(type,text="",attributes={}){
+//asignacion de padre solo con elementos que no estan en el dom
+function createElement(type,text="",attributes={},parent=undefined){
     const element =  document.createElement(type)
+
+    if(parent instanceof Element || parent instanceof HTMLDocument){
+        parent.appendChild(element)
+    }
     
-    element.textContent = text
+    // element.textContent = createtext
+    element.appendChild(document.createTextNode(text))
     setAttributes(element,attributes)
 
     return element

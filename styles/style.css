@@ -78,21 +78,16 @@
   justify-content: center;
   align-items: center;
   background: url(../assets/menu-categorias.jpg) center/cover no-repeat;
-  width: 100%;
+  max-width: 100%;
   height: 100%;
 }
 
-.categorys-carousel-buttons .carousel-button {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  width: 40px;
-  height: 430px;
-  background: url(../assets/button-scroll.png) center/contain no-repeat;
+.categorys {
+  position: relative;
+  max-width: 100%;
 }
 
 .categorys-carousel {
-  display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   padding: 40px 0px;
@@ -109,14 +104,23 @@
   border-radius: 4px;
 }
 
-.categorys-container {
+.categorys-carousel-buttons .carousel-button {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 40px;
+  height: 430px;
+  background: url(../assets/button-scroll.png) center/contain no-repeat;
+}
+
+.categorys-items {
   display: flex;
 }
-.categorys-container:hover .category:hover {
+.categorys-items:hover .category:hover {
   opacity: 1;
 }
 
-.category {
+.category-item {
   font-family: "neverwinter";
   display: flex;
   flex-direction: column;
@@ -136,35 +140,37 @@
   position: relative;
   background: linear-gradient(45deg, rgba(88, 6, 95, 0.8) 30%, rgba(9, 0, 94, 0.8) 100%);
 }
-.category:hover {
+.category-item:hover {
   z-index: 1;
   transform: scale(1.1);
 }
-.category:first-child {
+.category-item:first-child {
   transform-origin: left center;
 }
-.category:last-child {
+.category-item:last-child {
   transform-origin: right center;
 }
-.category__name {
+.category-item__name {
   text-align: center;
   font-weight: 400;
   font-size: 4.3rem;
   color: #e6e3e3;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
 }
-.category__score {
+.category-item__score {
   font-family: "Bank Gothic Medium";
   font-size: 2rem;
 }
-.category__description {
+.category-item__description {
   text-align: center;
-}
-.category__description p {
   font-size: 2.2rem;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
 }
-.category .category__button {
+.category-item__description p {
+  font-size: 2.2rem;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+}
+.category-item__button {
   position: absolute;
   bottom: 30px;
   width: 100px;
@@ -173,7 +179,7 @@
   transition: 0.2s all 0s;
   cursor: pointer;
 }
-.category .category__button:hover {
+.category-item__button:hover {
   transform: scale(1.15);
 }
 
@@ -202,7 +208,7 @@
   font-family: "Bank Gothic Medium";
   src: url("../assets/fonts/Bank Gothic Medium.otf");
 }
-.category-item {
+.category {
   display: grid;
   justify-items: center;
   width: 90%;
@@ -212,7 +218,7 @@
   background: linear-gradient(45deg, rgba(65, 26, 45, 0.8) 0%, rgba(43, 31, 43, 0.8) 100%);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
 }
-.category-item .category__contador {
+.category .category__contador {
   justify-self: flex-end;
   font-family: "Times New Roman", Times, serif;
   color: white;
@@ -221,7 +227,7 @@
   padding: 5px 15px;
   border-radius: 10px;
 }
-.category-item .category__timer {
+.category .category__timer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,7 +241,7 @@
   border: 2px solid #E8266B;
   transform: translateY(10px);
 }
-.category-item .category__title {
+.category .category__title {
   font-family: "neverwinter";
   font-weight: 400;
   font-size: 4rem;
@@ -243,7 +249,7 @@
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
   border-radius: 20px;
 }
-.category-item .category__next-question {
+.category .category__next-question {
   font-family: "Bank Gothic Medium";
   font-size: 1rem;
   position: relative;
@@ -254,7 +260,7 @@
   padding-right: 25px;
   padding-left: 25px;
 }
-.category-item .category__next-question::before {
+.category .category__next-question::before {
   content: "»";
   font-size: 1rem;
   position: absolute;
@@ -268,12 +274,12 @@
   padding-right: 20px;
   transition: all 0.2s linear 0s;
 }
-.category-item .category__next-question:hover {
+.category .category__next-question:hover {
   color: white;
   background: rgba(43, 31, 43, 0.9);
   padding-right: 45px;
 }
-.category-item .category__next-question:hover:before {
+.category .category__next-question:hover:before {
   opacity: 1;
 }
 

@@ -6,30 +6,20 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    // background:  radial-gradient(#144567,#233f52,#0A2238) ;
     background: url(../assets/menu-categorias.jpg) center/cover no-repeat;
 
-    width: 100%;
+    max-width: 100%;
     height: 100%;
     
 }
 
-.categorys-carousel-buttons{
 
-    .carousel-button{
-        position: absolute;
-        top: 0;
-        right:20px;
-        width: 40px;
-        height: 430px;
-        background: url(../assets/button-scroll.png) center/contain no-repeat;        
-
-
-    }
+.categorys{
+    position: relative;
+    max-width: 100%;
 }
 
 .categorys-carousel{
-    display: flex;
     overflow-x:scroll;
     scroll-snap-type:x mandatory;
     padding: 40px 0px;
@@ -47,7 +37,22 @@
     }
 }
 
-.categorys-container{
+
+.categorys-carousel-buttons{
+
+    .carousel-button{
+        position: absolute;
+        top: 0;
+        right:20px;
+        width: 40px;
+        height: 430px;
+        background: url(../assets/button-scroll.png) center/contain no-repeat;        
+
+
+    }
+}
+
+.categorys-items{
     display: flex;
 
     &:hover{
@@ -64,7 +69,7 @@
     }
 }
 
-.category{
+.category-item{
     font-family: $font-project;
     display: flex;
     flex-direction: column;
@@ -118,6 +123,8 @@
     &__description{
         text-align: center;
         // margin: 0px 0px 120px 0px;
+        font-size: 2.2rem;
+        text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 
         p{
             font-size: 2.2rem;
@@ -126,7 +133,7 @@
         }
     }
 
-    .category__button{
+    &__button{
         position: absolute;
         bottom: 30px;
 
