@@ -13,11 +13,8 @@ var selectedAnswer = undefined;
 var userName;
 var test;
 
-buttonStart.addEventListener("click",(event)=>{ event.preventDefault(); startTrivia()})
 formulario.addEventListener("submit",(event)=>{ event.preventDefault(); startTrivia()})
 
-
-//category funciona gracias a que el objeto se asigno en una funcion anonima (para cada boton de seleccion categorias)
 
 function startTrivia(){
     sessionStorage.clear()
@@ -162,10 +159,10 @@ function insertCategorys(){
             ]
 
 
-    const containerCategorysCarousel = createElement("div","",{class:"categorys-carousel"})
-    const containerCategorys = createElement("div","",{class:"categorys-container"})
+    const CategorysCarousel = createElement("div","",{class:"categorys-carousel"})
+    const CategorysItems = createElement("div","",{class:"categorys-container"})
 
-    containerCategorysCarousel.appendChild(containerCategorys)
+    CategorysCarousel.appendChild(CategorysItems)
 
     let diferenType = 1
     //insertando html de categorys 
@@ -179,7 +176,7 @@ function insertCategorys(){
 
             //creo un elemento html para el componente de categoria
             const componentCategory = createElement("div","",{class:`category category--img-${diferenType}`})
-            containerCategorys.appendChild(componentCategory)
+            CategorysItems.appendChild(componentCategory)
 
             const htmlString = `<h1 class="category__name">${category.name}</h1>
                                 <div id="${category.name}" class="category__score">0/${category.preguntas.length*100}</div>
@@ -195,18 +192,21 @@ function insertCategorys(){
 
             componentCategory.addEventListener("click",()=>{insertCategory({...category})})
 
-            //debo pasar un objeto copiado del original o lo modificara
-            // componentButtonCategory.addEventListener("click",()=>{insertCategory({...category})})
-
             componentCategory.appendChild(componentButtonCategory)
 
-            //agrego el componente por el metodo agregarHijo ("permite no re-escribir esa parte del dom y perder referencias(eventos)")
-            mainCategorys.appendChild(containerCategorysCarousel)
-
+    
             diferenType == 2 ? diferenType=1: diferenType++;
     })
 
+    mainCategorys.appendChild(CategorysCarousel)
     
+    const categoryButtonsScroll = createElement("div","",{class:"categorys-carousel-buttons"})
+
+    categoryButtonsScroll.innerHTML =   `<div class="carousel-button carousel-button--left"></div>
+                                         <div class="carousel-button carousel-button--rigth"></div>`
+
+    mainCategorys.appendChild(categoryButtonsScroll)
+
 }
 
 
@@ -310,7 +310,7 @@ function createQuestion(category,index){
     selectedAnswer = undefined;
 
     //pregunta
-    var question = category.preguntas[index]
+    var question = category.preguntas[indexQuestion]
 
     const componentQuestion = createElement("div","",{class:"question"})
     
@@ -370,13 +370,13 @@ function insertResultado(category){
 
     let mensaje;
     if(puntaje/(listQuestions.length*100) < 1){
-        mensaje = "Puedes hacerlo mejor!"
+        mensaje = "puedes hacerlo mejor!"
     }else{
-        mensaje = "Puntaje perfecto, Felicitaciones!!, ve a por otra categoria"
+        mensaje = "puntaje perfecto, felicitaciones!!, ve a por otra categoria"
     }
     
     const htmlString =  `<div class="resultado">
-                            <h2 class="resultado__title">${userName} has obtenido un puntaje de ${puntaje}/${listQuestions.length*100} </h2>
+                            <h2 class="resultado__title">has obtenido un puntaje de ${puntaje}/${listQuestions.length*100} </h2>
                             <h4 class="resultado__mensaje">${mensaje}</h4>
                             <div id="play-againg" class="button resultado__button resultado__button--again" >Play Againg!</div>
                             <div id="new-player" class="button resultado__button resultado__button--new" >New Player</div>

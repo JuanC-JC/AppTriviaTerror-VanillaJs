@@ -14,8 +14,8 @@
   max-width: 750px;
   border-radius: 10px;
   padding: 10px;
-  background: rgba(43, 31, 43, 0.7);
-  box-shadow: 0px 5px 8px rgba(12, 12, 12, 0.5);
+  background: linear-gradient(45deg, rgba(65, 26, 45, 0.8) 0%, rgba(43, 31, 43, 0.8) 100%);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
 }
 .category-item .category__contador {
   justify-self: flex-end;

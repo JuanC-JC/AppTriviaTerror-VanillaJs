@@ -77,10 +77,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(../assets/fondo-preguntas.jpg) center/cover no-repeat;
+  background: url(../assets/menu-categorias.jpg) center/cover no-repeat;
   width: 100%;
   height: 100%;
-  font-family: "";
+}
+
+.categorys-carousel-buttons .carousel-button {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 40px;
+  height: 430px;
+  background: url(../assets/button-scroll.png) center/contain no-repeat;
 }
 
 .categorys-carousel {
@@ -126,6 +134,7 @@
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
   transition: 0.5s transform;
   position: relative;
+  background: linear-gradient(45deg, rgba(88, 6, 95, 0.8) 30%, rgba(9, 0, 94, 0.8) 100%);
 }
 .category:hover {
   z-index: 1;
@@ -136,12 +145,6 @@
 }
 .category:last-child {
   transform-origin: right center;
-}
-.category--img-1 {
-  background: url(../assets/categoria-2.jpg) center/cover no-repeat;
-}
-.category--img-2 {
-  background: url(../assets/categoria-2.jpg) center/cover no-repeat;
 }
 .category__name {
   text-align: center;
@@ -206,8 +209,8 @@
   max-width: 750px;
   border-radius: 10px;
   padding: 10px;
-  background: rgba(43, 31, 43, 0.7);
-  box-shadow: 0px 5px 8px rgba(12, 12, 12, 0.5);
+  background: linear-gradient(45deg, rgba(65, 26, 45, 0.8) 0%, rgba(43, 31, 43, 0.8) 100%);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
 }
 .category-item .category__contador {
   justify-self: flex-end;
@@ -335,13 +338,16 @@
   flex-wrap: wrap;
   justify-content: center;
   font-family: "neverwinter";
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(43, 31, 43, 0.7);
+  padding-bottom: 20px;
+  border-radius: 10px;
 }
 .resultado__title {
   text-align: center;
   font-size: 4rem;
   color: white;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
 }
 .resultado__mensaje {
   text-align: center;

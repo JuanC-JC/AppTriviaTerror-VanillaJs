@@ -13,13 +13,16 @@
   flex-wrap: wrap;
   justify-content: center;
   font-family: "neverwinter";
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(43, 31, 43, 0.7);
+  padding-bottom: 20px;
+  border-radius: 10px;
 }
 .resultado__title {
   text-align: center;
   font-size: 4rem;
   color: white;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
 }
 .resultado__mensaje {
   text-align: center;
