@@ -1,0 +1,450 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: url(../assets/mi-fondo.png) center/cover no-repeat;
+}
+.main-page h1 {
+  text-align: center;
+  width: 90%;
+  max-width: 480px;
+  font-size: 3rem;
+  font-family: "neverwinter";
+  font-weight: 400;
+  color: #fca120;
+  text-shadow: 2px 2px 5px brown;
+}
+
+.form-nombre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 95%;
+  height: 70%;
+}
+.form-nombre ::placeholder {
+  color: #66547A;
+  background: #847EA2;
+}
+
+.nombre-container {
+  display: flex;
+  justify-content: center;
+  max-width: 350px;
+  width: 100%;
+  height: 100%;
+  background: url(../assets/input-img.png) center/contain no-repeat;
+}
+
+.form-nombre__name {
+  font-family: "Bank Gothic Medium";
+  font-size: 1rem;
+  align-self: center;
+  width: 40%;
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background: #847EA2;
+  box-shadow: 0px 3px 5px rgba(12, 12, 12, 0.3);
+  transform: skewY(-1deg) scaleX(0.82) translateX(-20px) translateY(10px);
+  color: white;
+}
+
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.main-categorys {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../assets/menu-categorias.jpg) center/cover no-repeat;
+  max-width: 100%;
+  height: 100%;
+}
+
+.categorys {
+  position: relative;
+  max-width: 100%;
+  padding: 0px 50px;
+}
+
+.categorys-carousel {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 40px 0px;
+  scroll-behavior: smooth;
+}
+.categorys-carousel::-webkit-scrollbar {
+  display: none;
+}
+.categorys-carousel-buttons .carousel-button {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 450px;
+  background: white;
+  margin-top: 40px;
+  background: url(../assets/button-scroll.png) center/contain no-repeat;
+  cursor: pointer;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.categorys-carousel-buttons .carousel-button--left {
+  border-radius: 20px 0px 0px 20px;
+  left: 10px;
+}
+.categorys-carousel-buttons .carousel-button--right {
+  transform: scaleX(-1);
+  border-radius: 20px 0px 0px 20px;
+  right: 10px;
+}
+.categorys-carousel-buttons .carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.categorys-items {
+  display: flex;
+}
+.categorys-items:hover .category:hover {
+  opacity: 1;
+}
+
+.category-item {
+  font-family: "neverwinter";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-align: start;
+  cursor: pointer;
+  opacity: 0.9;
+  min-width: 290px;
+  min-height: 450px;
+  padding: 10px;
+  margin-right: 10px;
+  color: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
+  transition: 0.5s transform;
+  position: relative;
+  background: linear-gradient(45deg, rgba(88, 6, 95, 0.8) 30%, rgba(9, 0, 94, 0.8) 100%);
+}
+.category-item:hover {
+  z-index: 1;
+  transform: scale(1.1);
+}
+.category-item:first-child {
+  transform-origin: left center;
+}
+.category-item:last-child {
+  transform-origin: right center;
+}
+.category-item__name {
+  text-align: center;
+  font-weight: 400;
+  font-size: 4.3rem;
+  color: #e6e3e3;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+}
+.category-item__score {
+  font-family: "Bank Gothic Medium";
+  font-size: 2rem;
+}
+.category-item__description {
+  text-align: center;
+  font-size: 2.2rem;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+}
+.category-item__description p {
+  font-size: 2.2rem;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+}
+.category-item__button {
+  position: absolute;
+  bottom: 30px;
+  width: 100px;
+  height: 100px;
+  background: url(../assets/button-categorys.png) center/contain no-repeat;
+  transition: 0.2s all 0s;
+  cursor: pointer;
+}
+.category-item__button:hover {
+  transform: scale(1.15);
+}
+
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.main-dinamic {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../assets/fondo-preguntas.jpg) center/cover no-repeat;
+}
+
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.category {
+  display: grid;
+  justify-items: center;
+  width: 90%;
+  max-width: 750px;
+  border-radius: 10px;
+  padding: 10px;
+  background: linear-gradient(45deg, rgba(65, 26, 45, 0.8) 0%, rgba(43, 31, 43, 0.8) 100%);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
+}
+.category .category__contador {
+  justify-self: flex-end;
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.category .category__timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  color: white;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  border: 2px solid #E8266B;
+  transform: translateY(10px);
+}
+.category .category__title {
+  font-family: "neverwinter";
+  font-weight: 400;
+  font-size: 4rem;
+  color: #e6e3e3;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+}
+.category .category__next-question {
+  font-family: "Bank Gothic Medium";
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s linear 0s;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.category .category__next-question::before {
+  content: "»";
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-right: 20px;
+  transition: all 0.2s linear 0s;
+}
+.category .category__next-question:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
+  padding-right: 45px;
+}
+.category .category__next-question:hover:before {
+  opacity: 1;
+}
+
+.category__question {
+  width: 100%;
+}
+.category__question .question {
+  display: grid;
+  margin-bottom: 20px;
+  justify-items: center;
+  gap: 10px;
+}
+.category__question .question__title {
+  font-family: "Bank Gothic Medium";
+  font-weight: 400;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2B1F2B;
+  border-radius: 10px;
+  padding: 15px 0px;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.category__question .question__answer {
+  font-family: "Bank Gothic Medium";
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 15px;
+  padding: 15px 15px;
+  margin: 0;
+  transition: background 0.3s 0s;
+  opacity: 0.9;
+}
+.category__question .question__answer:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
+}
+.category__question .question__answer.answer--correct {
+  color: white;
+  background: #0AC08D;
+}
+.category__question .question__answer.answer--incorrect {
+  color: white;
+  background: #FF8398;
+}
+
+@font-face {
+  font-family: "neverwinter";
+  src: url("../assets/fonts/Neverwinter.ttf");
+}
+@font-face {
+  font-family: "Bank Gothic Medium";
+  src: url("../assets/fonts/Bank Gothic Medium.otf");
+}
+.resultado {
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: "neverwinter";
+  background: rgba(43, 31, 43, 0.7);
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+.resultado__title {
+  text-align: center;
+  font-size: 4rem;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+}
+.resultado__mensaje {
+  text-align: center;
+  font-weight: 400;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  width: 90%;
+  margin-bottom: 20px;
+}
+.resultado__button {
+  font-family: "Bank Gothic Medium";
+  font-size: 1.5rem;
+  width: 90%;
+  max-width: 320px;
+  margin: 10px;
+  opacity: 0.9;
+}
+.resultado__button:hover {
+  color: white;
+  background: rgba(43, 31, 43, 0.9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 62.5%;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  text-align: center;
+  background-color: white;
+  padding: 10px 15px;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(36, 124, 123, 0.16);
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 5px;
+}
+#button-start {
+  color: saddlebrown;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  background: url(../assets/button-start.png) center/contain no-repeat;
+  transition: 0.2s all 0s;
+  outline: none;
+}
+#button-start:hover {
+  transform: scale(1.2);
+}
+
+@media (min-width: 450px) {
+  .category-item .category__contador {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+}
+
+/*# sourceMappingURL=style-mobile.css.map */
