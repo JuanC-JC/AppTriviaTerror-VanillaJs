@@ -71,13 +71,20 @@ main{
 
 }
 
-//solo se ejecuta cuando el dispositivo es mobil
-@media only screen and (hover: none) and (pointer: coarse){
+
+//solo cuando estoy en pc --> colocar desde el html
+@media only screen and (hover: hover) and (pointer:fine){
+
+    .categorys{
+        width: calc(100% - #{$width-carousel-buttons * 2});
+    }
+
     .carousel-button{
-        display: none;
+        display: block;
     }
     
     .main-categorys{
-        padding: 0;
+        padding: 0px 15px;
+        
     }
 }
