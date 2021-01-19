@@ -37,6 +37,9 @@ function startTrivia(){
 //inyect (componentCategorys "menu de categorias" to mainDinamic)
 function insertCategorys(){
 
+
+    htmlstringRepresentation = ""
+
     const categorys = [{name:"peliculas",
                 description:"¿las peliculas de terror son lo tuyo? averiguemolo",
                 preguntas:[
@@ -160,11 +163,26 @@ function insertCategorys(){
                 
             ]
 
-    const componentCategorys = createElement("div","",{class:"categorys"})
-    const CategorysCarousel = createElement("div","",{class:"categorys-carousel"},componentCategorys)
-    const CategorysItems = createElement("div","",{class:"categorys-items"},CategorysCarousel)
+    const componentCategorys = createElement("div",
+                                            "",
+                                            {class:"categorys"}
+                                            )
+    const CategorysCarousel = createElement("div",
+                                            "",
+                                            {
+                                                class:"categorys-carousel"
+                                            },
+                                            componentCategorys)
+    const CategorysItems = createElement("div",
+                                            "",
+                                            {
+                                                class:"categorys-items"
+                                            },
+                                            CategorysCarousel)
+        
 
-    // add (htmlComponent categoryItems => htmlComponents (title,score,description,button) )
+
+    // add (htmlComponent categoryItems => htmlComponent category(title,score,description,button) )
     categorys.forEach(
         (category)=>{ 
             
@@ -198,33 +216,32 @@ function insertCategorys(){
 
     })
 
-    
-    // add (htmlComponent categorybuttonsScroll => htmlComponents (left,rigth))
-    const categorysButtonsScroll = createElement("div","",{class:"categorys-carousel-buttons"},componentCategorys)
-        {
-            const buttonLeft = createElement("div",
-                                            "",
-                                            {
-                                                id:"carouselButtonLeft",
-                                                class:"carousel-button carousel-button--left"
-                                            },
-                                            categorysButtonsScroll)
-            const buttonRight = createElement("div",
-                                            "",
-                                            {
-                                                id:"carouselButtonRight",
-                                                class:"carousel-button carousel-button--right"
-                                            },
-                                            categorysButtonsScroll)        
-            
-            buttonLeft.addEventListener("click",()=>moveCarousel(CategorysCarousel,"left"))
-            buttonRight.addEventListener("click",()=>moveCarousel(CategorysCarousel,"right"))
-        
-        }   
 
+    //add (domComponent maincategorys => htmlComponent buttonLeft)
+    const buttonLeft = createElement("div",
+                                    "",
+                                    {
+                                        id:"carouselButtonLeft",
+                                        class:"carousel-button carousel-button--left"
+                                    },
+                                    mainCategorys)
 
     // add (domElement mainCategorys => htmlComponent componentCategorys "menu categorias" )
     mainCategorys.appendChild(componentCategorys)
+    
+    //add (domComponent maincategorys => htmlComponent buttonRight)
+    const buttonRight = createElement("div",
+                                    "",
+                                    {
+                                        id:"carouselButtonRight",
+                                        class:"carousel-button carousel-button--right"
+                                    },
+                                    mainCategorys)       
+                                    
+    
+    buttonLeft.addEventListener("click",()=>moveCarousel(CategorysCarousel,"left"))
+    buttonRight.addEventListener("click",()=>moveCarousel(CategorysCarousel,"right"))
+
 
 }
 

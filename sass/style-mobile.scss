@@ -70,3 +70,14 @@ main{
     }
 
 }
+
+//solo se ejecuta cuando el dispositivo es mobil
+@media only screen and (hover: none) and (pointer: coarse){
+    .carousel-button{
+        display: none;
+    }
+    
+    .main-categorys{
+        padding: 0;
+    }
+}

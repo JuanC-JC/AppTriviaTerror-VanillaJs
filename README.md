@@ -6,9 +6,11 @@ _proyecto desarrollado siguiendo como guia lineamientos presentados en el proyec
 
 ## índice
 * [1. Resumen del proyecto](#1-resumen-del-proyecto)
-* [2. Resumen del proyecto](#2-objetivos-de-aprendizaje)
-* [3. Resumen del proyecto](#3-proceso-creativo)
-* [4. Resumen del proyecto](#4-pre-requisitos)
+* [2. Objetivos de aprendizaje](#2-objetivos-de-aprendizaje)
+* [3. Proceso creativo 🔧](#3-proceso-creativo)
+* [4. Pre-requsitos 📋](#4-pre-requisitos)
+* [5. Demo](#5-demo)
+* [6. autores ✒️](#5-autores)
 
 
 ## 1. Resumen del proyecto
@@ -58,7 +60,7 @@ npm install -g sass
 
 
 
-# Autores ✒️
+# 6. Autores ✒️
 
 _Proyecto desarrollado por:_
 
