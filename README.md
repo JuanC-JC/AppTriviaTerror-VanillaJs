@@ -65,16 +65,16 @@ la tematica abordada fue el terror:
         <td>Menu categorias</td>
     </tr>
     <tr>
-        <td><img src="./assets/prototipos/inicio.png" width=500 ></td>
-        <td><img src="./assets/prototipos/menu.png" width=500 ></td>
+        <td><img src="./assets/prototipos/inicio.PNG" width=500 ></td>
+        <td><img src="./assets/prototipos/menu.PNG" width=500 ></td>
     </tr>
     <tr>
         <td>preguntas</td>
         <td>resultados</td>
     </tr>
     <tr>
-        <td><img src="./assets/prototipos/preguntas.png" width=500 ></td>
-        <td><img src="./assets/prototipos/resultados.png" width=500 ></td>
+        <td><img src="./assets/prototipos/preguntas.PNG" width=500 ></td>
+        <td><img src="./assets/prototipos/resultados.PNG" width=500 ></td>
     </tr>
  </table>
 
