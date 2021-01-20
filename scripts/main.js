@@ -7,7 +7,7 @@ const formulario = document.getElementById("formulario-nombre");
 
 var puntaje = 0;
 var indexQuestion;
-var defectTime = 3;
+var defectTime = 15;
 var chronometer;
 var selectedAnswer = undefined;
 var userName;
@@ -63,20 +63,25 @@ function insertCategorys() {
 				},
 				{
 					pregunta:
-						"¿La Famosa frase 'i see dead people(veo gente muerta), de que pelicula es?",
+						"¿La Famosa frase i see dead people(veo gente muerta), de que pelicula es?",
 					respuestas: [
 						"memorias de un eterno resplandor",
 						"dracula",
 						"sexto sentido",
 						"alien covenant",
 					],
-					respuesta: 0,
+					respuesta: 2,
 				},
 				{
-					pregunta: "Si buenas hay pan?",
-					respuestas: ["no sr wtf", "un señorito", "un pirilon"],
-					respuesta: 0,
-				},
+					pregunta: "¿Cómo se llama la niña del Aro?",
+					respuestas: [
+						"rachel", 
+						"samara", 
+						"samantha",
+						"riven"
+					],
+					respuesta: 1,
+				}
 			],
 		},
 
@@ -85,32 +90,42 @@ function insertCategorys() {
 			description: "¿que tan masoquista eres, nada como un buen scream?",
 			preguntas: [
 				{
-					pregunta: "lorem ipsum dolor sit amet",
+					pregunta: "¿cómo se llama la terrorifica institucion mental que sirve de escenario a outlast?",
 					respuestas: [
-						"lorem ipsum",
-						"dolor sit amet",
-						"consectur adpiscing elit",
-						"sed do eiusmod",
+						"hospital de filadelfia",
+						"hospital whittingham",
+						"hospital severalls",
+						"mount masive",
+					],
+					respuesta: 3,
+				},
+				{
+					pregunta: "¿cúal es el nombre de la estacion espacial que debemos explorar en Alien:Isolation?",
+					respuestas: [
+						"nostromo",
+						"sevastopol",
+						"weyland",
+						"yutani",
 					],
 					respuesta: 1,
 				},
 				{
-					pregunta: "lorem ipsum dolor sit amet",
+					pregunta: "¿cómo se llama el equipo de fuerzas especiales protagonista del primer Resident Evil?",
 					respuestas: [
-						"lorem ipsum",
-						"dolor sit amet",
-						"consectur adpiscing elit",
-						"sed do eiusmod",
+						"alpha",
+						"victory",
+						"pícaro",
+						"apollo",
 					],
-					respuesta: 2,
+					respuesta: 0,
 				},
 				{
-					pregunta: "lorem ipsum dolor sit amet",
+					pregunta: "¿qúe significan las siglas de F.E.A.R?",
 					respuestas: [
-						"lorem ipsum",
-						"dolor sit amet",
-						"consectur adpiscing elit",
-						"sed do eiusmod",
+						"First Encounter Action Response",
+						"First Encounter Action Recon",
+						"First Encounter Assault Recon",
+						"Finest Endure Action Response",
 					],
 					respuesta: 2,
 				},
