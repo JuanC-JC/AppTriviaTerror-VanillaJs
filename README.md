@@ -1,8 +1,7 @@
 # app trivia
-_proyecto desarrollado siguiendo como guia lineamientos presentados en el proyecto [trivia-laboratoria]()_ 
+_proyecto desarrollado siguiendo como guia lineamientos presentados en el proyecto [trivia-laboratoria](https://github.com/Laboratoria/bootcamp/tree/main/projects/00-trivia)_ 
 
-> la tematica abordada fue el terror
->> Historia - peliculas - videojuegos
+
 
 ## índice
 * [1. Resumen del proyecto](#1-resumen-del-proyecto)
@@ -14,7 +13,15 @@ _proyecto desarrollado siguiendo como guia lineamientos presentados en el proyec
 
 
 ## 1. Resumen del proyecto
+Laboratoria propone la siguiente descripcion de proyecto:
 
+> ¿Qué tengo que hacer exactamente? En este proyecto tendrás que construir una aplicación web que le permita a un usuario responder distintas preguntas escogiendo sus respuestas de una lista de alternativas. 
+> La temática es libre. Tú debes crear la mejor trivia que puedas y luego pensar en cómo debe ser esa experiencia de uso (qué pantallas, explicaciones, mensajes, colores, ¿marca?) etc.
+
+
+la tematica abordada fue el terror:
+
+>> Historia - peliculas - videojuegos-etc..
 
 ## 2. Objetivos de aprendizaje
 
@@ -39,8 +46,37 @@ _proyecto desarrollado siguiendo como guia lineamientos presentados en el proyec
 
 
 ## 3. Proceso creativo 🔧
+
+
 ### Prototipo baja fidelidad 📋
+
+<table>
+    <tr>
+        <td><img src="./assets/prototipos/prototipo-inicial.jpg" width=800 ></td>
+    </tr>
+
+</table>
+
 ### Prototipo final
+
+<table>
+    <tr>
+        <td>Inicio</td>
+        <td>Menu categorias</td>
+    </tr>
+    <tr>
+        <td><img src="./assets/prototipos/inicio.png" width=500 ></td>
+        <td><img src="./assets/prototipos/menu.png" width=500 ></td>
+    </tr>
+    <tr>
+        <td>preguntas</td>
+        <td>resultados</td>
+    </tr>
+    <tr>
+        <td><img src="./assets/prototipos/preguntas.png" width=500 ></td>
+        <td><img src="./assets/prototipos/resultados.png" width=500 ></td>
+    </tr>
+ </table>
 
 
 ## 4. Pre-requisitos

@@ -22,7 +22,7 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  background: url(../assets/mi-fondo.png) center/cover no-repeat;
+  background: url(../assets/fondo-main.png) center/cover no-repeat;
 }
 .main-page h1 {
   text-align: center;
