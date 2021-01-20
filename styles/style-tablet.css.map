@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../sass/variables.scss","../sass/style-tablet.scss"],"names":[],"mappings":"AAGA;EACI,aAJW;EAKX;;AAGJ;EACI,aARU;EASV;;ACRJ;EAGQ;IACI;;;EAKJ;IACI;IACA;;EACA;IACI;;;AAOhB;EAGQ;IACI;IACA;;;EAMJ;IACI;IACA;IACA;;EAGJ;IACI","file":"style-tablet.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/variables.scss","../sass/style-tablet.scss"],"names":[],"mappings":"AAIA;EACI,aALW;EAMX;;AAGJ;EACI,aATU;EAUV;;ACTJ;EAGQ;IACI;;;EAKJ;IACI;IACA;;EACA;IACI;;;AAOhB;EAGQ;IACI;IACA;;;EAMJ;IACI;IACA;IACA;;EAGJ;IACI","file":"style-tablet.css"}

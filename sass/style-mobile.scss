@@ -19,7 +19,8 @@ main{
     display: flex;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 100vh; 
+    height: calc(#{$inner-hight-main} * 100);
 }
 
 .hidden{
