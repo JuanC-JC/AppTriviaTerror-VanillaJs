@@ -614,10 +614,4 @@ function setTimer(time, category) {
 		}
 	}, 1000);
 
-	//si queda pendiente me borra un posible cronometro mas adelante --> si fueran propiedades de un objeto...
-	setTimeout(() => {
-		clearInterval(chronometer)
-	}, time*1000);
-
-
 }
