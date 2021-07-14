@@ -89,10 +89,10 @@ npm install -g sass
 
 # 5. Demo 
 
-* deploy del proyecto [DEPLOY](https://juanc-jc.github.io/app-trivia-terror/.)
+* deploy del proyecto [DEPLOY](https://juanc-jc.github.io/AppTriviaTerror-VanillaJs/)
 
 
-* repositorio del proyecto [REPO](https://github.com/JuanC-JC/app-trivia-terror)
+* repositorio del proyecto [REPO](https://github.com/JuanC-JC/AppTriviaTerror-VanillaJs)
 
 
 
