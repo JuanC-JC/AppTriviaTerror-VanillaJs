@@ -12,6 +12,44 @@ var chronometer;
 var selectedAnswer = undefined;
 var userName;
 
+//preload images for categories
+function preloadImage(){
+
+		const preload = (url) =>{
+			const res = document.createElement("link");
+			res.rel = "preload";
+			res.as = "image";
+			res.href = url;
+			document.head.appendChild(res)
+		}
+		const listImages = ['/assets/button-scroll.png','/assets/menu-categorias.jpg','/assets/button-categorys.png']
+
+		
+
+		listImages.forEach(img => preload(img))
+
+}
+
+preloadImage()
+
+const viewLoading = () =>{
+
+	const loading = document.querySelector('.loading')
+
+	loading.classList.remove('hidden')
+
+	setTimeout(() => {
+		loading.classList.add('hidden')
+	}, 500);
+}
+
+window.addEventListener('load',()=>{
+	setTimeout(()=>{
+		document.querySelector('.loading').classList.add('hidden')
+	},500)
+})
+
+
 formulario.addEventListener("submit", (event) => {
 	event.preventDefault();
 	startTrivia();
