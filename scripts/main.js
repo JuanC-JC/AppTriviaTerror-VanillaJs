@@ -22,7 +22,7 @@ function preloadImage(){
 			res.href = url;
 			document.head.appendChild(res)
 		}
-		const listImages = ['/assets/button-scroll.png','/assets/menu-categorias.jpg','/assets/button-categorys.png']
+		const listImages = ['./assets/button-scroll.png','./assets/menu-categorias.jpg','./assets/button-categorys.png']
 
 		
 
