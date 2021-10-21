@@ -12,6 +12,9 @@ var chronometer;
 var selectedAnswer = undefined;
 var userName;
 
+
+//comentario de prueba
+
 //preload images for categories
 function preloadImage(){
 
