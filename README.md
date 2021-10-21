@@ -6,10 +6,10 @@ _proyecto desarrollado siguiendo como guia lineamientos presentados en el proyec
 ## índice
 * [1. Resumen del proyecto](#1-resumen-del-proyecto)
 * [2. Objetivos de aprendizaje](#2-objetivos-de-aprendizaje)
-* [3. Proceso creativo 🔧](#3-proceso-creativo)
+* [3. Proceso creativo 🔧](#3-proceso-creativo-🔧)
 * [4. Pre-requsitos 📋](#4-pre-requisitos)
 * [5. Demo](#5-demo)
-* [6. autores ✒️](#5-autores)
+* [6. autores ✒️](#6-autores-✒️)
 
 
 ## 1. Resumen del proyecto
