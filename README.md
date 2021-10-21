@@ -89,7 +89,7 @@ npm install -g sass
 
 # 5. Demo 
 
-* deploy del proyecto [DEPLOY](terror.netlify.app)
+* deploy del proyecto [DEPLOY](https://terror.netlify.app/)
 
 
 * repositorio del proyecto [REPO](https://github.com/JuanC-JC/AppTriviaTerror-VanillaJs)
